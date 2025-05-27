@@ -10,7 +10,7 @@ rss = f"""<?xml version="1.0" encoding="UTF-8" ?>
   <channel>
     <title>Dzień i miesiąc</title>
     <description>Codzienna informacja o dniu i miesiącu</description>
-    <link>https://twojanazwa.github.io/rss-dzien/feed.xml</link>
+    <link>https://zanfil.github.io/cos/feed.xml</link>
     <lastBuildDate>{pub_date}</lastBuildDate>
     <item>
       <title>{day_and_month}</title>
