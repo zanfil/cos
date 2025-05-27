@@ -3,7 +3,7 @@ name: Update RSS Daily
 on:
   schedule:
     - cron: '0 3 * * *'  # Codziennie o 03:00 UTC
-  workflow_dispatch:
+  workflow_dispatch:      # Pozwala odpalić ręcznie z GitHub
 
 jobs:
   build:
@@ -22,9 +22,12 @@ jobs:
       run: python generate_rss.py
 
     - name: Commit and push
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "rss-bot"
         git config --global user.email "rss-bot@example.com"
         git add feed.xml
-        git commit -m "Aktualizacja RSS: $(date -u)" || echo "No changes"
+        git commit -m "Aktualizacja RSS: $(date -u)" || echo "Brak zmian"
+        git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
         git push
